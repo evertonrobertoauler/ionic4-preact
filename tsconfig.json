@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "module": "commonjs",
+    "jsx": "react",
+    "jsxFactory": "h",
+    "target": "es5"
+  }
+}
