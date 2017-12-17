@@ -1,5 +1,3 @@
-/// <reference path="../../node_modules/@ionic/core/dist/collection/components.d.ts" />
-
 import { h, render } from 'preact';
 import { App } from './app';
 import { setStylesTarget } from "typestyle";

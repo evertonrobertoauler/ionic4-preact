@@ -1,3 +1,5 @@
+/// <reference path="./typings.d.ts" />
+
 import { h, Component } from 'preact';
 import { style, media } from 'typestyle';
 import * as Helmet from 'preact-helmet';
@@ -10,6 +12,16 @@ const teste = style({
 }));
 
 export class App extends Component<any, any> {
+
+  private alert: HTMLIonAlertControllerElement;
+
+  componentDidMount() {
+    setTimeout(() => this.alert.create({
+      title: 'Warning',
+      message: 'Loren Ipsun',
+      buttons: ['Close']
+    }).then(a => a.present()), 300);
+  }
 
   render({ url }) {
     return (
@@ -36,6 +48,7 @@ export class App extends Component<any, any> {
                 </div>
               </Router>
             </div>
+            <ion-alert-controller ref={(d: any) => this.alert = d}></ion-alert-controller>
           </ion-content>
         </ion-page>
       </ion-app>
