@@ -11,6 +11,12 @@ export default class Home extends Component<any, any> {
 
   private alertCtrl: HTMLIonAlertControllerElement;
 
+  formUpdate(field) {
+    return event => {
+      this.setState({ [field]: event.target.value });
+    }
+  }
+
   showAlert = () => {
     this.alertCtrl
       .create({
@@ -21,7 +27,7 @@ export default class Home extends Component<any, any> {
       .then(alert => alert.present());
   };
 
-  render() {
+  render({ }, { name }) {
     return (
       <ion-list>
         <ion-item>
@@ -30,6 +36,9 @@ export default class Home extends Component<any, any> {
         <ion-item>
           <ion-button color="secondary" size="large" onClick={this.showAlert}>Show Alert</ion-button>
           <ion-alert-controller ref={(ctrl: any) => this.alertCtrl = ctrl} />
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" value={name} onInput={this.formUpdate('name')} />
         </ion-item>
       </ion-list>
     );
