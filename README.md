@@ -10,6 +10,12 @@ Preact + SSR + SEO + Ionic 4
 
     npm run start
     
+## Open
+
+    http://localhost:3000
+    http://localhost:3000/any-other-route
+    
+    
 ## Description
 
 This project is build using Typescript and Webpack, I'm using Preact, Preact Router, 
