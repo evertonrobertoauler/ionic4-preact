@@ -1,7 +1,7 @@
 const { join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const StringReplacePlugin = require('string-replace-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = [
@@ -35,13 +35,12 @@ module.exports = [
           preserveLineBreaks: false
         }
       }),
-      new CopyWebpackPlugin([
-        {
-          from: join(process.cwd(), 'node_modules', '@ionic', 'core', 'dist', 'ionic'),
-          to: join(process.cwd(), 'dist', 'public', 'ionic')
-        },
-      ]),
-      new StringReplacePlugin()
+      new StringReplacePlugin(),
+      new CleanWebpackPlugin([
+        join(process.cwd(), 'dist', '*.html'),
+        join(process.cwd(), 'dist', '*.js'),
+        join(process.cwd(), 'dist', 'public', '*.js')
+      ])
     ]
   },
   {

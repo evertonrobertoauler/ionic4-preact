@@ -1,27 +1,12 @@
 /// <reference path="./typings.d.ts" />
 
 import { h, Component } from 'preact';
-import { style, media } from 'typestyle';
 import * as Helmet from 'preact-helmet';
-import { Router, Link } from 'preact-router';
-
-const teste = style({
-  textAlign: 'center'
-}, media({ type: 'all', minWidth: '600px' }, {
-  textAlign: 'right'
-}));
+import { Router } from 'preact-router';
+import Home from './home'
+import Default from './default'
 
 export class App extends Component<any, any> {
-
-  private alert: HTMLIonAlertControllerElement;
-
-  componentDidMount() {
-    setTimeout(() => this.alert.create({
-      title: 'Warning',
-      message: 'Loren Ipsun',
-      buttons: ['Close']
-    }).then(a => a.present()), 300);
-  }
 
   render({ url }) {
     return (
@@ -35,20 +20,13 @@ export class App extends Component<any, any> {
             </ion-toolbar>
           </ion-header>
           <ion-content>
-            <div>
-              <Helmet title="My Title" meta={[
-                { name: "description", content: "Helmet test" },
-                { property: "og:type", content: "article" }
-              ]} />
-              <Router url={url}>
-                <div path='/'>Home</div>
-                <div default>
-                  <p>Página não encontrada!</p>
-                  <Link href="/">Home</Link>
-                </div>
-              </Router>
-            </div>
-            <ion-alert-controller ref={(d: any) => this.alert = d}></ion-alert-controller>
+            <Helmet title="My Title" meta={[
+              { name: "description", content: "Helmet test" }
+            ]} />
+            <Router url={url}>
+              <Home path="/" />
+              <Default default />
+            </Router>
           </ion-content>
         </ion-page>
       </ion-app>
