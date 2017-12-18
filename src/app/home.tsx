@@ -15,7 +15,7 @@ export default class Home extends Component<any, any> {
     this.alertCtrl
       .create({
         title: 'Demo',
-        message: 'Loren Ipsum!',
+        message: 'Lorem Ipsum!',
         buttons: ['Close']
       })
       .then(alert => alert.present());
