@@ -1,14 +1,13 @@
 /// <reference path="./typings.d.ts" />
 
-import { h, Component } from 'preact';
-import * as Helmet from 'preact-helmet';
-import { Router } from 'preact-router';
+import * as React from 'react';
+import Helmet from 'react-helmet';
+import { Route, Switch } from 'react-router-dom';
 import Home from './home'
 import Default from './default'
 
-export class App extends Component<any, any> {
-
-  render({ url }) {
+export class App extends React.Component<any, any> {
+  render() {
     return (
       <ion-app>
         <ion-page>
@@ -21,12 +20,12 @@ export class App extends Component<any, any> {
           </ion-header>
           <ion-content>
             <Helmet title="My Title" meta={[
-              { name: "description", content: "Helmet test" }
+              { name: "description", content: 'Helmet test' }
             ]} />
-            <Router url={url}>
-              <Home path="/" />
-              <Default default />
-            </Router>
+            <Switch>
+              <Route path='/' exact component={Home} />
+              <Route path='*' component={Default} />
+            </Switch>
           </ion-content>
         </ion-page>
       </ion-app>

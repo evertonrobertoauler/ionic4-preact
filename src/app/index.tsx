@@ -1,9 +1,11 @@
-import { h, render } from 'preact';
+import * as React from 'react';
+import { hydrate } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom'
+import { setStylesTarget } from 'typestyle';
 import { App } from './app';
-import { setStylesTarget } from "typestyle";
 
 import '../../node_modules/@ionic/core/dist/ionic';
 
 const root = document.getElementById('root');
-render(<App />, root, root.children[0]);
+hydrate(<BrowserRouter><App /></BrowserRouter>, root);
 setStylesTarget(document.getElementById('styles-root'));

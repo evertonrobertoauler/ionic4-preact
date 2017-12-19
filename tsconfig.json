@@ -3,7 +3,7 @@
     "sourceMap": true,
     "module": "commonjs",
     "jsx": "react",
-    "jsxFactory": "h",
+    "jsxFactory": "React.createElement",
     "target": "es5",
     "lib": [
       "es2015",

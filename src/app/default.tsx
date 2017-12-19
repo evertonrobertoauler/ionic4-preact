@@ -1,7 +1,7 @@
-import { h, Component } from 'preact';
-import { Link } from 'preact-router';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 
-export default class Default extends Component<any, any> {
+export default class Default extends React.Component<any, any> {
 
   render() {
     return (
@@ -10,7 +10,7 @@ export default class Default extends Component<any, any> {
           Page not Found!
         </ion-item>
         <ion-item>
-          <Link href="/">Back to Home</Link>
+          <Link to="/">Back to Home</Link>
         </ion-item>
       </ion-list>
     );

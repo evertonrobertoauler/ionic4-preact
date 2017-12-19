@@ -1,12 +1,13 @@
 import * as express from 'express';
 import * as compression from 'compression';
-import { h } from 'preact';
-import { render } from 'preact-render-to-string';
+import * as React from 'react';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
 import { getStyles } from 'typestyle';
 import { App } from '../app/app';
 import { join } from 'path';
 import { readFileSync } from 'fs';
-import * as Helmet from 'preact-helmet';
+import Helmet from 'react-helmet';
 
 const PORT = process.env.PORT || 3000;
 const TEMPLATE = readFileSync(join(process.cwd(), 'dist', 'index.html')).toString();
@@ -20,7 +21,11 @@ app.use('/public', express.static(join(process.cwd(), 'dist', 'public')));
 app.get('*.*', (req, res) => res.status(404).send());
 
 app.get('*', (req, res) => {
-  const html = render(<App url={req.url} />);
+  const html = renderToString(
+    <StaticRouter location={req.url} context={{}}>
+      <App />
+    </StaticRouter>
+  );
   const css = getStyles();
   const head = Helmet.rewind();
 
